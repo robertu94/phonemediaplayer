@@ -29,7 +29,8 @@ def connect_a_phone():
     device_properties = dbus.Interface(device_object, "org.freedesktop.DBus.Properties")
     print("connecting", device_properties.Get("org.bluez.Device1","Name"))
     device_interface.Connect()
-    time.sleep(2)
+    #the connect call doesn't block, so wait for it
+    time.sleep(4)
 
 
 
@@ -69,9 +70,9 @@ def manage_player(args):
     player_properties = dbus.Interface(player_object, "org.freedesktop.DBus.Properties")
     player_status = player_properties.Get("org.bluez.MediaPlayer1","Status")
     track = player_properties.Get("org.bluez.MediaPlayer1", "Track")
-    title = track['Title']
-    album = track['Album']
-    artist = track['Artist']
+    title = track.get('Title', "")
+    album = track.get('Album', "")
+    artist = track.get('Artist', "")
     try:
         name = player_properties.Get("org.bluez.MediaPlayer1","Name")
     except dbus.DBusException:

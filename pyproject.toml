@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "phonemediaplayer"
+version = "0.1.0"
+description = "control media on phones with bluetooth and dbus"
+authors = ["Robert Underwood <rr.underwood94@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dbus-python = "^1.2.18"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+phone = "phonemediaplayer:main"
